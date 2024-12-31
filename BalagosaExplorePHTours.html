@@ -30,16 +30,20 @@
             color: white;
             text-decoration: none;
             font-size: 18px;
+            cursor: pointer;
         }
         nav a:hover {
             text-decoration: underline;
         }
-        .banner {
-            width: 100%;
-            height: auto;
-        }
         main {
             padding: 20px;
+        }
+        section {
+            display: none;
+            margin-bottom: 30px;
+        }
+        section.active {
+            display: block;
         }
         footer {
             text-align: center;
@@ -47,21 +51,12 @@
             padding: 10px;
             font-size: 14px;
         }
-        section {
-            margin-bottom: 30px;
-        }
-        section h2 {
-            font-size: 24px;
-            color: #007BFF;
-            margin-bottom: 10px;
-        }
-        section p, li {
-            font-size: 16px;
-            line-height: 1.5;
+        ul {
+            padding-left: 20px;
         }
         #cta {
             text-align: center;
-            background-color: #FFA500;
+            background-color: #007BFF;
             color: white;
             padding: 20px;
             margin: 30px auto;
@@ -70,19 +65,10 @@
             max-width: 800px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        #cta h2 {
-            margin-bottom: 10px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        #cta p {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
         #cta a {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #FF4500;
+            background-color: #7ebcff;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -92,10 +78,51 @@
         #cta a:hover {
             background-color: #e03e00;
         }
-        ul {
-            padding-left: 20px;
+        .contact-branches {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .contact-branch {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+        }
+        #contact {
+            text-align: center;
+        }
+
+        .services-list, .promos-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .services-item, .promos-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show Home section by default
+            showSection('home');
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -104,73 +131,60 @@
     </header>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#promos">Promos</a>
-        <a href="#contact">Contact</a>
+        <a onclick="showSection('home')">Home</a>
+        <a onclick="showSection('services')">Services</a>
+        <a onclick="showSection('promos')">Promos</a>
+        <a onclick="showSection('contact')">Contact</a>
     </nav>
 
     <main>
+        <section id="home" class="active">
+            <div id="cta">
+                <h2>Book Your Next Adventure Today!</h2>
+                <p>Explore the Philippines like never before with our exciting packages. Limited slots available for promo deals. Don't miss out!</p>
+                <a href="#">Book Now</a>
+            </div>
+        </section>
+
         <section id="services">
-            <h2>Our Services</h2>
-            <p>We offer a variety of travel and tour packages, including:</p>
-            <ul>
-                <li>Island Hopping Tours</li>
-                <li>Guided City Tours</li>
-                <li>Mountain Trekking Packages</li>
-                <li>Hotel and Transport Reservations</li>
-                <li>Customized Travel Itineraries</li>
-            </ul>
+            <h2 style="text-align: center;">Our Services</h2>
+            <div class="services-list">
+                <div class="services-item">Island Hopping Tours</div>
+                <div class="services-item">Guided City Tours</div>
+                <div class="services-item">Mountain Trekking Packages</div>
+                <div class="services-item">Hotel and Transport Reservations</div>
+                <div class="services-item">Customized Travel Itineraries</div>
+            </div>
         </section>
 
         <section id="promos">
-            <h2>Special Promos</h2>
-            <p>Don't miss our amazing deals!</p>
-            <ul>
-                <li>Enjoy discounts like "3+1 Free" on group packages</li>
-                <li>20% discount on bookings made at least a month in advance</li>
-                <li>Special weekend rates for island hopping in Cebu</li>
-            </ul>
+            <h2 style="text-align: center;">Special Promos</h2>
+            <div class="promos-list">
+                <div class="promos-item">Enjoy discounts like "3+1 Free" on group packages</div>
+                <div class="promos-item">20% discount on bookings made at least a month in advance</div>
+                <div class="promos-item">Special weekend rates for island hopping in Cebu</div>
+            </div>
         </section>
 
-        <section id="packages">
-            <h2>Popular Packages</h2>
-            <ul>
-                <li>Manila: Historic Intramuros Tour with Food Crawl</li>
-                <li>Cebu: Whale Shark Watching and Kawasan Falls Adventure</li>
-                <li>Davao: Mt. Apo Climbing Experience</li>
-            </ul>
+        <section id="contact">
+            <h2>Our Branches</h2>
+            <p>Feel free to contact us through any of our branches below:</p>
+            <div class="contact-branches">
+                <div class="contact-branch">
+                    <h3>Manila Branch</h3>
+                    <p><strong>Contact:</strong> (+63) 123-4567</p>
+                </div>
+                <div class="contact-branch">
+                    <h3>Cebu Branch</h3>
+                    <p><strong>Contact:</strong> (+63) 234-5678</p>
+                </div>
+                <div class="contact-branch">
+                    <h3>Davao Branch</h3>
+                    <p><strong>Contact:</strong> (+63) 345-6789</p>
+                </div>
+            </div>
         </section>
-
-        <section id="cta" style="background-color: #007BFF; color: white; text-align: center; padding: 20px; margin: 30px auto; border-radius: 5px; width: 90%; max-width: 800px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <h2 style="color: white;">Book Your Next Adventure Today!</h2>
-            <p>Explore the Philippines like never before with our exciting packages. Limited slots available for promo deals. Don't miss out!</p>
-            <a href="#" style="display: inline-block; padding: 10px 20px; background-color: white; color: #007BFF; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Book Now</a>
-        </section>
-        
-        
-        
     </main>
-
-    <section id="contact" style="text-align: center; padding: 20px; background-color: #f4f4f4; margin-top: 20px;">
-        <h2>Our Branches</h2>
-        <p>Feel free to contact us through any of our branches below:</p>
-        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
-            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; width: 200px;">
-                <h3>Manila Branch</h3>
-                <p><strong>Contact:</strong> (+63) 123-4567</p>
-            </div>
-            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; width: 200px;">
-                <h3>Cebu Branch</h3>
-                <p><strong>Contact:</strong> (+63) 234-5678</p>
-            </div>
-            <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; width: 200px;">
-                <h3>Davao Branch</h3>
-                <p><strong>Contact:</strong> (+63) 345-6789</p>
-            </div>
-        </div>
-    </section>
-    
 
     <footer>
         <p>&copy; 2024 Explore PH Tours. All rights reserved.</p>
