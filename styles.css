@@ -369,3 +369,40 @@ footer .footer-bottom{
   font-size: 16px;
   font-weight: 500;
 }
+.scroll-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #6f4f4f;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.scroll-button.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mini-btn:hover {
+  background-color: #5a3f3f;
+}
